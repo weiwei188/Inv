@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prd.inv.dao.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.prd.inv.entity.Item">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_type" jdbcType="TINYINT" property="itemType" />
+    <result column="item_group" jdbcType="TINYINT" property="itemGroup" />
+    <result column="item_cate" jdbcType="VARCHAR" property="itemCate" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="default_wh_id" jdbcType="BIGINT" property="defaultWhId" />
+    <result column="default_loca_id" jdbcType="BIGINT" property="defaultLocaId" />
+    <result column="serial_control" jdbcType="TINYINT" property="serialControl" />
+    <result column="serial_style" jdbcType="TINYINT" property="serialStyle" />
+    <result column="spec_control" jdbcType="TINYINT" property="specControl" />
+    <result column="safe_inventory" jdbcType="DECIMAL" property="safeInventory" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="created_by_code" jdbcType="VARCHAR" property="createdByCode" />
+    <result column="created_by_name" jdbcType="VARCHAR" property="createdByName" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="modified_by_code" jdbcType="VARCHAR" property="modifiedByCode" />
+    <result column="modified_by_name" jdbcType="VARCHAR" property="modifiedByName" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_code, item_name, item_type, item_group, item_cate, unit, default_wh_id, 
+    default_loca_id, serial_control, serial_style, spec_control, safe_inventory, gmt_created, 
+    created_by_code, created_by_name, gmt_modified, modified_by_code, modified_by_name, 
+    is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inv_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from inv_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.prd.inv.entity.Item">
+    insert into inv_item (id, item_code, item_name, 
+      item_type, item_group, item_cate, 
+      unit, default_wh_id, default_loca_id, 
+      serial_control, serial_style, spec_control, 
+      safe_inventory, gmt_created, created_by_code, 
+      created_by_name, gmt_modified, modified_by_code, 
+      modified_by_name, is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemType,jdbcType=TINYINT}, #{itemGroup,jdbcType=TINYINT}, #{itemCate,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{defaultWhId,jdbcType=BIGINT}, #{defaultLocaId,jdbcType=BIGINT}, 
+      #{serialControl,jdbcType=TINYINT}, #{serialStyle,jdbcType=TINYINT}, #{specControl,jdbcType=TINYINT}, 
+      #{safeInventory,jdbcType=DECIMAL}, #{gmtCreated,jdbcType=TIMESTAMP}, #{createdByCode,jdbcType=VARCHAR}, 
+      #{createdByName,jdbcType=VARCHAR}, #{gmtModified,jdbcType=TIMESTAMP}, #{modifiedByCode,jdbcType=VARCHAR}, 
+      #{modifiedByName,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.prd.inv.entity.Item">
+    insert into inv_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemCode != null">
+        item_code,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemType != null">
+        item_type,
+      </if>
+      <if test="itemGroup != null">
+        item_group,
+      </if>
+      <if test="itemCate != null">
+        item_cate,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="defaultWhId != null">
+        default_wh_id,
+      </if>
+      <if test="defaultLocaId != null">
+        default_loca_id,
+      </if>
+      <if test="serialControl != null">
+        serial_control,
+      </if>
+      <if test="serialStyle != null">
+        serial_style,
+      </if>
+      <if test="specControl != null">
+        spec_control,
+      </if>
+      <if test="safeInventory != null">
+        safe_inventory,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="createdByCode != null">
+        created_by_code,
+      </if>
+      <if test="createdByName != null">
+        created_by_name,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="modifiedByCode != null">
+        modified_by_code,
+      </if>
+      <if test="modifiedByName != null">
+        modified_by_name,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null">
+        #{itemType,jdbcType=TINYINT},
+      </if>
+      <if test="itemGroup != null">
+        #{itemGroup,jdbcType=TINYINT},
+      </if>
+      <if test="itemCate != null">
+        #{itemCate,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultWhId != null">
+        #{defaultWhId,jdbcType=BIGINT},
+      </if>
+      <if test="defaultLocaId != null">
+        #{defaultLocaId,jdbcType=BIGINT},
+      </if>
+      <if test="serialControl != null">
+        #{serialControl,jdbcType=TINYINT},
+      </if>
+      <if test="serialStyle != null">
+        #{serialStyle,jdbcType=TINYINT},
+      </if>
+      <if test="specControl != null">
+        #{specControl,jdbcType=TINYINT},
+      </if>
+      <if test="safeInventory != null">
+        #{safeInventory,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdByCode != null">
+        #{createdByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdByName != null">
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedByCode != null">
+        #{modifiedByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedByName != null">
+        #{modifiedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.prd.inv.entity.Item">
+    update inv_item
+    <set>
+      <if test="itemCode != null">
+        item_code = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null">
+        item_type = #{itemType,jdbcType=TINYINT},
+      </if>
+      <if test="itemGroup != null">
+        item_group = #{itemGroup,jdbcType=TINYINT},
+      </if>
+      <if test="itemCate != null">
+        item_cate = #{itemCate,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultWhId != null">
+        default_wh_id = #{defaultWhId,jdbcType=BIGINT},
+      </if>
+      <if test="defaultLocaId != null">
+        default_loca_id = #{defaultLocaId,jdbcType=BIGINT},
+      </if>
+      <if test="serialControl != null">
+        serial_control = #{serialControl,jdbcType=TINYINT},
+      </if>
+      <if test="serialStyle != null">
+        serial_style = #{serialStyle,jdbcType=TINYINT},
+      </if>
+      <if test="specControl != null">
+        spec_control = #{specControl,jdbcType=TINYINT},
+      </if>
+      <if test="safeInventory != null">
+        safe_inventory = #{safeInventory,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdByCode != null">
+        created_by_code = #{createdByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdByName != null">
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedByCode != null">
+        modified_by_code = #{modifiedByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedByName != null">
+        modified_by_name = #{modifiedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.prd.inv.entity.Item">
+    update inv_item
+    set item_code = #{itemCode,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_type = #{itemType,jdbcType=TINYINT},
+      item_group = #{itemGroup,jdbcType=TINYINT},
+      item_cate = #{itemCate,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      default_wh_id = #{defaultWhId,jdbcType=BIGINT},
+      default_loca_id = #{defaultLocaId,jdbcType=BIGINT},
+      serial_control = #{serialControl,jdbcType=TINYINT},
+      serial_style = #{serialStyle,jdbcType=TINYINT},
+      spec_control = #{specControl,jdbcType=TINYINT},
+      safe_inventory = #{safeInventory,jdbcType=DECIMAL},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      created_by_code = #{createdByCode,jdbcType=VARCHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      modified_by_code = #{modifiedByCode,jdbcType=VARCHAR},
+      modified_by_name = #{modifiedByName,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

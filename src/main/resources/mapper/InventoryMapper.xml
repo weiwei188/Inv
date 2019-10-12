@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prd.inv.dao.InventoryMapper">
+  <resultMap id="BaseResultMap" type="com.prd.inv.entity.Inventory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="wh_id" jdbcType="BIGINT" property="whId" />
+    <result column="loca_id" jdbcType="BIGINT" property="locaId" />
+    <result column="serial_control" jdbcType="TINYINT" property="serialControl" />
+    <result column="serial_no" jdbcType="VARCHAR" property="serialNo" />
+    <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_id, wh_id, loca_id, serial_control, serial_no, quantity
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inv_inventory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from inv_inventory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.prd.inv.entity.Inventory">
+    insert into inv_inventory (id, item_id, wh_id, 
+      loca_id, serial_control, serial_no, 
+      quantity)
+    values (#{id,jdbcType=INTEGER}, #{itemId,jdbcType=BIGINT}, #{whId,jdbcType=BIGINT}, 
+      #{locaId,jdbcType=BIGINT}, #{serialControl,jdbcType=TINYINT}, #{serialNo,jdbcType=VARCHAR}, 
+      #{quantity,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.prd.inv.entity.Inventory">
+    insert into inv_inventory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="whId != null">
+        wh_id,
+      </if>
+      <if test="locaId != null">
+        loca_id,
+      </if>
+      <if test="serialControl != null">
+        serial_control,
+      </if>
+      <if test="serialNo != null">
+        serial_no,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="whId != null">
+        #{whId,jdbcType=BIGINT},
+      </if>
+      <if test="locaId != null">
+        #{locaId,jdbcType=BIGINT},
+      </if>
+      <if test="serialControl != null">
+        #{serialControl,jdbcType=TINYINT},
+      </if>
+      <if test="serialNo != null">
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.prd.inv.entity.Inventory">
+    update inv_inventory
+    <set>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="whId != null">
+        wh_id = #{whId,jdbcType=BIGINT},
+      </if>
+      <if test="locaId != null">
+        loca_id = #{locaId,jdbcType=BIGINT},
+      </if>
+      <if test="serialControl != null">
+        serial_control = #{serialControl,jdbcType=TINYINT},
+      </if>
+      <if test="serialNo != null">
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.prd.inv.entity.Inventory">
+    update inv_inventory
+    set item_id = #{itemId,jdbcType=BIGINT},
+      wh_id = #{whId,jdbcType=BIGINT},
+      loca_id = #{locaId,jdbcType=BIGINT},
+      serial_control = #{serialControl,jdbcType=TINYINT},
+      serial_no = #{serialNo,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

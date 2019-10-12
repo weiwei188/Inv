@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prd.inv.dao.WarehouseMapper">
+  <resultMap id="BaseResultMap" type="com.prd.inv.entity.Warehouse">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="wh_code" jdbcType="VARCHAR" property="whCode" />
+    <result column="wh_name" jdbcType="VARCHAR" property="whName" />
+    <result column="is_loca_enabled" jdbcType="TINYINT" property="isLocaEnabled" />
+    <result column="is_mrp_enabled" jdbcType="TINYINT" property="isMrpEnabled" />
+    <result column="org_id" jdbcType="BIGINT" property="orgId" />
+    <result column="attribute" jdbcType="VARCHAR" property="attribute" />
+    <result column="is_enabled" jdbcType="TINYINT" property="isEnabled" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="created_by_code" jdbcType="VARCHAR" property="createdByCode" />
+    <result column="created_by_name" jdbcType="VARCHAR" property="createdByName" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="modified_by_code" jdbcType="VARCHAR" property="modifiedByCode" />
+    <result column="modified_by_name" jdbcType="VARCHAR" property="modifiedByName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wh_code, wh_name, is_loca_enabled, is_mrp_enabled, org_id, attribute, is_enabled, 
+    is_deleted, gmt_created, created_by_code, created_by_name, gmt_modified, modified_by_code, 
+    modified_by_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inv_warehouse
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from inv_warehouse
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.prd.inv.entity.Warehouse">
+    insert into inv_warehouse (id, wh_code, wh_name, 
+      is_loca_enabled, is_mrp_enabled, org_id, 
+      attribute, is_enabled, is_deleted, 
+      gmt_created, created_by_code, created_by_name, 
+      gmt_modified, modified_by_code, modified_by_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{whCode,jdbcType=VARCHAR}, #{whName,jdbcType=VARCHAR}, 
+      #{isLocaEnabled,jdbcType=TINYINT}, #{isMrpEnabled,jdbcType=TINYINT}, #{orgId,jdbcType=BIGINT}, 
+      #{attribute,jdbcType=VARCHAR}, #{isEnabled,jdbcType=TINYINT}, #{isDeleted,jdbcType=TINYINT}, 
+      #{gmtCreated,jdbcType=TIMESTAMP}, #{createdByCode,jdbcType=VARCHAR}, #{createdByName,jdbcType=VARCHAR}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{modifiedByCode,jdbcType=VARCHAR}, #{modifiedByName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.prd.inv.entity.Warehouse">
+    insert into inv_warehouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="whCode != null">
+        wh_code,
+      </if>
+      <if test="whName != null">
+        wh_name,
+      </if>
+      <if test="isLocaEnabled != null">
+        is_loca_enabled,
+      </if>
+      <if test="isMrpEnabled != null">
+        is_mrp_enabled,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="attribute != null">
+        attribute,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="createdByCode != null">
+        created_by_code,
+      </if>
+      <if test="createdByName != null">
+        created_by_name,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="modifiedByCode != null">
+        modified_by_code,
+      </if>
+      <if test="modifiedByName != null">
+        modified_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="whCode != null">
+        #{whCode,jdbcType=VARCHAR},
+      </if>
+      <if test="whName != null">
+        #{whName,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocaEnabled != null">
+        #{isLocaEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="isMrpEnabled != null">
+        #{isMrpEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="attribute != null">
+        #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdByCode != null">
+        #{createdByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdByName != null">
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedByCode != null">
+        #{modifiedByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedByName != null">
+        #{modifiedByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.prd.inv.entity.Warehouse">
+    update inv_warehouse
+    <set>
+      <if test="whCode != null">
+        wh_code = #{whCode,jdbcType=VARCHAR},
+      </if>
+      <if test="whName != null">
+        wh_name = #{whName,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocaEnabled != null">
+        is_loca_enabled = #{isLocaEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="isMrpEnabled != null">
+        is_mrp_enabled = #{isMrpEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="attribute != null">
+        attribute = #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdByCode != null">
+        created_by_code = #{createdByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdByName != null">
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedByCode != null">
+        modified_by_code = #{modifiedByCode,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedByName != null">
+        modified_by_name = #{modifiedByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.prd.inv.entity.Warehouse">
+    update inv_warehouse
+    set wh_code = #{whCode,jdbcType=VARCHAR},
+      wh_name = #{whName,jdbcType=VARCHAR},
+      is_loca_enabled = #{isLocaEnabled,jdbcType=TINYINT},
+      is_mrp_enabled = #{isMrpEnabled,jdbcType=TINYINT},
+      org_id = #{orgId,jdbcType=BIGINT},
+      attribute = #{attribute,jdbcType=VARCHAR},
+      is_enabled = #{isEnabled,jdbcType=TINYINT},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      created_by_code = #{createdByCode,jdbcType=VARCHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      modified_by_code = #{modifiedByCode,jdbcType=VARCHAR},
+      modified_by_name = #{modifiedByName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

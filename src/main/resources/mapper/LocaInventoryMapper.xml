@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prd.inv.dao.LocaInventoryMapper">
+  <resultMap id="BaseResultMap" type="com.prd.inv.entity.LocaInventory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="wh_id" jdbcType="BIGINT" property="whId" />
+    <result column="loca_id" jdbcType="BIGINT" property="locaId" />
+    <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+    <result column="available_quantity" jdbcType="DECIMAL" property="availableQuantity" />
+    <result column="assigned_quantity" jdbcType="DECIMAL" property="assignedQuantity" />
+    <result column="frozen_quantity" jdbcType="DECIMAL" property="frozenQuantity" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_id, wh_id, loca_id, quantity, available_quantity, assigned_quantity, frozen_quantity
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inv_loca_inventory
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from inv_loca_inventory
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.prd.inv.entity.LocaInventory">
+    insert into inv_loca_inventory (id, item_id, wh_id, 
+      loca_id, quantity, available_quantity, 
+      assigned_quantity, frozen_quantity)
+    values (#{id,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{whId,jdbcType=BIGINT}, 
+      #{locaId,jdbcType=BIGINT}, #{quantity,jdbcType=DECIMAL}, #{availableQuantity,jdbcType=DECIMAL}, 
+      #{assignedQuantity,jdbcType=DECIMAL}, #{frozenQuantity,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.prd.inv.entity.LocaInventory">
+    insert into inv_loca_inventory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="whId != null">
+        wh_id,
+      </if>
+      <if test="locaId != null">
+        loca_id,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="availableQuantity != null">
+        available_quantity,
+      </if>
+      <if test="assignedQuantity != null">
+        assigned_quantity,
+      </if>
+      <if test="frozenQuantity != null">
+        frozen_quantity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="whId != null">
+        #{whId,jdbcType=BIGINT},
+      </if>
+      <if test="locaId != null">
+        #{locaId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="availableQuantity != null">
+        #{availableQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="assignedQuantity != null">
+        #{assignedQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenQuantity != null">
+        #{frozenQuantity,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.prd.inv.entity.LocaInventory">
+    update inv_loca_inventory
+    <set>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="whId != null">
+        wh_id = #{whId,jdbcType=BIGINT},
+      </if>
+      <if test="locaId != null">
+        loca_id = #{locaId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="availableQuantity != null">
+        available_quantity = #{availableQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="assignedQuantity != null">
+        assigned_quantity = #{assignedQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenQuantity != null">
+        frozen_quantity = #{frozenQuantity,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.prd.inv.entity.LocaInventory">
+    update inv_loca_inventory
+    set item_id = #{itemId,jdbcType=BIGINT},
+      wh_id = #{whId,jdbcType=BIGINT},
+      loca_id = #{locaId,jdbcType=BIGINT},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      available_quantity = #{availableQuantity,jdbcType=DECIMAL},
+      assigned_quantity = #{assignedQuantity,jdbcType=DECIMAL},
+      frozen_quantity = #{frozenQuantity,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
